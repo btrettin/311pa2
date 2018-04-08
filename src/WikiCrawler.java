@@ -36,6 +36,9 @@ public class WikiCrawler {
 		this.fileName = fileName;
 	}
 
+	/*/extract the links in the order they appear in the page, and place them in Q in that
+	order only.
+	/*/
 	private ArrayList<String> extractLinks(String doc) {
 		String subDoc = null;
 		for (int x = 0; x < doc.length(); x++) {
@@ -82,6 +85,13 @@ public class WikiCrawler {
 		return urls;
 	}
 
+	/*/	This method should construct the web graph over following pages: If seedUrl does
+	not contain all words from topics, then the graph constructed is empty graph(0 vertices and 0
+	edges). Suppose that seedUrl contains all words from topics. Consider the first max many pages
+	(including seedUrl page), that contain every word from the list topics, and are visited when you
+	do a BFS with seedUrl as root. Your program should construct the web graph only over those
+	pages, and write the graph to the file fileName. 
+	/*/
 	public void crawl() {
 		HashMap<String, WikiCrawler.Node> h = new HashMap<String, WikiCrawler.Node>();
 		PriorityQueue<Node> q = new PriorityQueue<Node>();
